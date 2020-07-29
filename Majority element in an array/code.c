@@ -3,8 +3,11 @@
 
 int main()
 {
-    int n,i,j,a[10],count=1;
+    int n,i,j,count=1;
+    printf("Enter the size of array - ");
     scanf("%d",&n);
+    printf("Enter the elements - ");
+    int a[n];
     for(i=0;i<n;i++)
     {
         scanf("%d",&a[i]);
