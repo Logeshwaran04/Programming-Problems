@@ -1,6 +1,6 @@
 #Moore's Voting Algorithm
-n=int(input())
-a=list(map(int,input().split()))
+n=int(input("Enter the size of array - "))
+a=list(map(int,input("Enter the elements - ").split()))
 max_i=0
 count=1
 for i in range(1,n):
