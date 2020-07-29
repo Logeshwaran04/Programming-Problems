@@ -3,12 +3,15 @@
 int main()
 {
     int n,i,j,sum,t;
+    printf("Enter the array Size ");
     scanf("%d ",&n);
     int a[n];
+    printf("Enter the elements");
     for(i=0;i<n;i++)
     {
         scanf("%d",&a[i]);
     }
+    printf("Enter the Sum to be find");
     scanf("%d",&sum);
     int s[max]={0};
     for(i=0;i<n;i++)
@@ -21,6 +24,6 @@ int main()
         }
         s[a[i]]=1;
     }
-
+    printf("Pair is not found");
     return 0;
 }
