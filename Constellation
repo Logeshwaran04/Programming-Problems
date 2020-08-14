@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int main()
+{
+    int n,i,j,count=0,k;
+    scanf("%d",&n);
+    char s[3][n];
+    scanf("%s\n%s\n%s",s[0],s[1],s[2]);
+    i=0;
+    j=0;
+    while(i<n)
+    {
+        count=0;
+        if(s[0][i]=='#')
+        {
+            i++;
+            printf("#");
+            continue;
+        }
+        else if(s[0][i]=='.' && s[1][i]=='.' && s[2][i]=='.')
+        {
+            i++;
+            continue;
+        }
+        for(j=0;j<3;j++)
+        {
+            for(k=i;k<i+3;k++)
+            {
+                if(s[j][k]=='*')
+                count++;
+            }
+        }
+        if(count==9)
+        {
+            printf("E");
+        }
+        else if(count==8)
+        {
+            printf("O");
+        }
+        else if(count==7 && s[1][i]=='*')
+        {
+            printf("U");
+        }
+        else if(count==7)
+        {
+            printf("I");
+        }
+        else if(count==6) 
+        {
+            printf("A");
+        }
+        i+=3;
+    }
+    
+
+    return 0;
+}
