@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include<limits.h>
+int max(int *a, int n)
+{
+    int max=INT_MIN,max_i=0;
+    for(int i=0;i<n;i++)
+    {
+        if(max<a[i])
+        {
+            max=a[i];
+            max_i=i;
+        }
+    }
+    return max_i;
+}
+
+int main()
+{
+   int n,k,i,sum=0,index,j;
+   scanf("%d",&n);
+   int a[n];
+   for(i=0;i<n;i++)
+   {
+       scanf("%d",&a[i]);
+   }
+   scanf("%d",&k);
+   for(j=0;j<k;j++)
+   {
+      index=max(a,n);
+      for(i=index;i<n-1;i++)
+     {
+       a[i]=a[i+1];
+     }
+   n--;
+   }
+   for(i=0;i<n;i++)
+   {
+       sum=sum+a[i];
+   }
+  printf("%d",sum);
+    return 0;
+}
