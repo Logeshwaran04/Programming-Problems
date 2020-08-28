@@ -1,0 +1,83 @@
+#include <stdio.h>
+void merge(int *a,int start,int mid, int end)
+{
+    int n=mid-start+1,m=end-mid,i,j;
+    int l[n],r[m],k=0;
+    for(i=start;i<=mid;i++)
+    {
+        l[k]=a[i];
+        k++;
+        
+    }
+    k=0;
+    for(i=mid+1;i<=end;i++)
+    {
+        r[k]=a[i];
+        k++;
+    }
+    i=0,j=0;
+    while(i<n && j<m)
+    {
+        if(l[i]<r[j])
+        {
+            a[start]=l[i];
+            start++;
+            i++;
+        }
+        else
+        {
+            a[start]=r[j];
+            start++;
+            j++;
+        }
+    }
+    if(i<n)
+    {
+        while(i<n)
+        {
+            a[start]=l[i];
+            start++;
+            i++;
+        }
+    }
+    if(j<m)
+    {
+        while(j<m)
+        {
+            a[start]=r[j];
+            start++;
+            j++;
+        }
+    }
+}
+void mergesort(int *a,int start,int end)
+{
+    int mid=(start+end)/2;
+    if(start<end)
+    {
+    mergesort(a,start,mid);
+    mergesort(a,mid+1,end);
+    merge(a,start,mid,end);
+    }
+}
+
+int main()
+{
+    int n,i,k,s=0;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    scanf("%d",&k);
+    mergesort(a,0,n);
+    for(i=0;i<n-k;i++)
+    {
+        s=s+a[i];
+    }
+    printf("%d",s);
+    
+
+    return 0;
+}
