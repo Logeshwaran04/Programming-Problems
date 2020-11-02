@@ -1,0 +1,58 @@
+#include <stdio.h>
+int count=0;
+void merge(int *a,int start,int mid,int end)
+{
+    int i=start,j=mid+1,temp[end-start+1],k=0;
+    while(i<=mid && j<=end)
+    {
+        if(a[i]>a[j])
+        {
+            temp[k++]=a[j];
+            count++;
+            j++;
+        }
+        else
+        {
+            temp[k++]=a[i];
+            i++;
+        }
+    }
+    if(i<=mid)
+    {
+        count=count+(mid-i);
+    }
+    while(i<=mid)
+    {
+        temp[k++]=a[i++];
+    }
+    while(j<=end)
+    {
+        temp[k++]=a[j++];
+    }
+    j=start;
+    for(i=0;i<k;i++)
+    {
+        a[j+i]=temp[i];
+    }
+   // printf("%d",count);
+}
+void divide(int *a,int start,int end)
+{
+    if(start<end)
+    {
+        int mid=(start+end)/2;
+        divide(a,start,mid);
+        divide(a,mid+1,end);
+        merge(a,start,mid,end);
+    }
+}
+
+int main()
+{
+   int n,i,j;
+   int a[]={1,2,3,4,5,3};
+   n=sizeof(a)/sizeof(a[0]);
+   divide(a,0,n-1);
+   printf("%d",count);
+    return 0;
+}
