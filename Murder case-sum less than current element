@@ -1,0 +1,67 @@
+#include <stdio.h>
+long int sum=0;
+void merge(int *a,int start,int mid,int end)
+{
+    int i=start,j=mid+1,k=0,arr[end-start+1],s=0;
+    while(i<=mid && j<=end)
+    {
+        if(a[i]<a[j])
+        {
+            s=s+a[i];
+            //sum=sum+a[i];
+            arr[k++]=a[i];
+            i++;
+        }
+        else
+        {
+            sum=sum+s;
+            arr[k++]=a[j];
+            j++;
+        }
+    }
+    while(i<=mid)
+    {
+        arr[k++]=a[i++];
+    }
+    while(j<=end)
+    {
+        sum=sum+s;
+        arr[k++]=a[j++];
+    }
+    j=start;
+    for(i=0;i<k;i++)
+    {
+        a[j+i]=arr[i];
+    }
+}
+void divide(int *a,int start,int end)
+{
+    if(start<end)
+    {
+        int mid=(start+end)/2;
+        divide(a,start,mid);
+        divide(a,mid+1,end);
+        merge(a,start,mid,end);
+    }
+}
+
+int main() {
+
+   int n,i,j,t;
+   scanf("%d",&t);
+   while(t--)
+   {
+       sum=0;
+       scanf("%d",&n);
+       int a[n];
+       for(i=0;i<n;i++)
+       {
+           scanf("%d",&a[i]);
+       }
+
+
+   divide(a,0,n-1);
+    printf("%ld",sum);
+   }
+    return 0;
+}
